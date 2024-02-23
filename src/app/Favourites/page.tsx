@@ -1,7 +1,7 @@
 
 import { SearchResult } from '../gallery/page';
 import cloudinary from "cloudinary"
-import CloudinaryImage from "../gallery/cloudinaryImage"
+import CloudinaryImage from "../../components/cloudinaryImage"
 import { ForceRefresh } from '@/components/force-refresh';
 import FavouriteList from './favouriteList';
 

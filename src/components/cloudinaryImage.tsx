@@ -2,9 +2,10 @@
 import React, { ComponentProps, useState, useTransition } from 'react';
 import { CldImage, CldImageProps } from 'next-cloudinary';
 import Heart from '@/components/icons/heart';
-import { setAsFavouriteAction } from './actions';
-import { SearchResult } from './page';
 import FullHeart from '@/components/icons/FullHeart';
+import { setAsFavouriteAction } from '@/app/gallery/actions';
+import { SearchResult } from '@/app/gallery/page';
+import { ImageMenu } from './imageMenu';
 
 function CloudinaryImage(props:{
     ImageData : SearchResult;
@@ -33,7 +34,7 @@ function CloudinaryImage(props:{
             setAsFavouriteAction(ImageData.public_id, false)
         })
           }}
-          className='absolute top-2 right-2 hover:text-white text-red-500 cursor-pointer'/>
+          className='absolute top-2 left-2 hover:text-white text-red-500 cursor-pointer'/>
       )  : (
             <Heart
            
@@ -43,13 +44,14 @@ function CloudinaryImage(props:{
                 setAsFavouriteAction(ImageData.public_id, true)
             })
               }}
-              className='absolute top-2 right-2 hover:text-red-500  cursor-pointer'
+              className='absolute top-2 left-2 hover:text-red-500  cursor-pointer'
         
         />)
             
        
          } 
-         
+         <ImageMenu 
+         image={ImageData}/>
         </div>
     );
 }
