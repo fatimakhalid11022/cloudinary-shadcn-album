@@ -1,48 +1,45 @@
+import UploadButton from './upload_button';
+import cloudinary from "cloudinary"
+import CloudinaryImage from "./cloudinaryImage"
 
-"use client"
-import React from 'react';
-import { CldUploadButton } from 'next-cloudinary';
-import { Button } from '@/components/ui/button';
+export type SearchResult = {
 
-type UploadResult ={
-    info:{
-    public_id:string
-    }
-    event:"success"
-  }
-  
-function Gallery() {
+    public_id:string;
+    tags:string[]
+}
+
+
+export default async function Gallery() {
+    const results = await cloudinary.v2.search
+         .expression("resource_type:image")
+         .sort_by("created_at","desc")
+         .with_field("tags")
+         .max_results(30)
+         .execute() as {resources:SearchResult[]}
+           
+         console.log("results",results)
     return (
         <section>
+            <div className='flex flex-col gap-8'>
             <div className='flex justify-between'>
             <h1 className='text-4xl font-bold'>Gallery</h1>
-            <Button asChild>
-                <div className='flex gap-2'>
-            <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            strokeWidth={1.5} 
-            stroke="currentColor" 
-            className="w-6 h-6">
-             <path strokeLinecap="round" 
-             strokeLinejoin="round" 
-             d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" 
-             />
-            </svg>
-
-            <CldUploadButton
-    className="text-center"
-    onUpload={(result: UploadResult )=>{
-    //   return setImageId(result.info.public_id);
-    }}
-    
-    uploadPreset="sjc6sysh" />
-    </div>
-    </Button>
+           <UploadButton 
+           />
+           </div>
+            <div className='grid grid-cols-4 gap-4'>
+           {results.resources.map((result) => (
+              <CloudinaryImage 
+              key={result.public_id}
+             
+              ImageData={result}
+              height={300}
+              width={400}
+              alt="an image of something"/>
+           ) )}
+           </div>
             </div>
         </section>
     );
 }
 
-export default Gallery;
+ 
