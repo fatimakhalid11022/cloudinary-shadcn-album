@@ -17,11 +17,27 @@ import { useState } from "react"
 
 import AddImagetoAlbum from "./actions"
  
-export function AddtoAlbumDialog({image}:{ image:SearchResult}) {
+export function AddtoAlbumDialog({
+  image ,
+  onClose
+  }:{ 
+  image:SearchResult,
+  onClose : () => void 
+}) {
     const [albumName,setAlbumName] = useState("")
     const [open,setOpen] = useState(false)
+   
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog 
+    open={open} 
+    onOpenChange={(newOpenState)=>
+  { 
+    if(!newOpenState){
+      onClose()
+    }
+   ;
+    setOpen(newOpenState)}
+    }>
       <DialogTrigger >
        <Button variant="ghost">
         <FolderPlus className= "mr-2 h-4 w-4"/>
@@ -49,6 +65,7 @@ export function AddtoAlbumDialog({image}:{ image:SearchResult}) {
         <DialogFooter>
           <Button 
           onClick={async() => {
+            onClose()
             setOpen(false)
             await AddImagetoAlbum(image,albumName)
             }} type="submit">

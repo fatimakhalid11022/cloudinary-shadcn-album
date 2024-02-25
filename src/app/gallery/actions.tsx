@@ -1,7 +1,6 @@
 "use server"
-import React from 'react';
+
 import cloudinary from "cloudinary"
-import { revalidatePath } from 'next/cache';
 export async function setAsFavouriteAction(
     publicId:string,
     isFavourite:boolean,
