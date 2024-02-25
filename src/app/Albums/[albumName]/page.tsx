@@ -2,7 +2,7 @@
 
 import cloudinary from "cloudinary"
 import { SearchResult } from '@/app/gallery/page';
-import AlbumGrid from "./Albumgrid";
+import AlbumGrid from "./albumgrid";
 import { ForceRefresh } from "@/components/force-refresh";
 
 
