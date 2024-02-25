@@ -1,15 +1,13 @@
-
-
 import cloudinary from "cloudinary"
 import { SearchResult } from '@/app/gallery/page';
-import AlbumGrid from "./albumgrid";
+import AlbumGrid from "./Albumgrid";
 import { ForceRefresh } from "@/components/force-refresh";
 
 
 export default async function GalleryPage({
     params:{albumName},
      }:{params:{
-        albumName: string
+        albumName:string
     }}
     ) {
     const results =( await cloudinary.v2.search
