@@ -23,6 +23,8 @@ export default function EditPage({searchParams:{publicId}}:{
               Clear All
            </Button>
            
+
+           
            <Button onClick={() => setTransformation("tint") }>
               Apply Tint
            </Button>
@@ -60,9 +62,9 @@ export default function EditPage({searchParams:{publicId}}:{
            tint="equalize:80:blue:blueviolet"
            alt=""
          />
-         
-         
+        
          )}
+      
            {transformation === "grayscale" && (
            <CldImage 
            src = {publicId}

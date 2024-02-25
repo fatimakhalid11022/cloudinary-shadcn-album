@@ -33,12 +33,19 @@ export function ImageMenu({image}:{ image:SearchResult}) {
             onClose={() =>setOpen(false)}          
             />
              </DropdownMenuItem>
+             
           <DropdownMenuItem asChild >
-            <Link href={`/Edit?publicId=${encodeURIComponent(image.public_id)}`}>  
+          <Button className="cursor-pointer text-left flex justify-start pl-4"
+          asChild
+          variant="ghost">
+            <Link 
+            
+            href={`/Edit?publicId=${encodeURIComponent(image.public_id)}`}>  
             <Pencil className="mr-2 w-4 h-4"/>
              Edit
-            </Link>           
-    
+            </Link>     
+                 
+          </Button>
           </DropdownMenuItem>
          
           </DropdownMenuContent>
