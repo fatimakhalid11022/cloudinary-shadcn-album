@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental :{
-        serverActions :true
-    }
-};
-
-export default nextConfig;
+    // Remove this line (no longer needed in Next.js 14+)
+    // experimental: {
+    //   serverActions: true, ❌ Remove this
+    // },
+    // Other configs...
+  };
+  
+  export default nextConfig;
